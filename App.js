@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import MyTab from './app/shared/MyTab';
+import { useTheme } from '@react-navigation/native'; // Importa useTheme para acceder al tema
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const theme = useTheme(); // Obtén el tema actual
+  console.log(theme.colors.background);
   return (
-    <View style={styles.container}>
-      <Text>Jorge APP</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer >
+      {/* <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}  />
+      </Stack.Navigator> */}
+      <MyTab />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
